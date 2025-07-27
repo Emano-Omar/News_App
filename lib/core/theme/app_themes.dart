@@ -28,7 +28,7 @@ class AppThemes {
         return Colors.black;
       }),
       trackColor: WidgetStateProperty.resolveWith<Color>((states) {
-        if (states.contains(WidgetState.selected)) return Colors.lightBlue.withOpacity(0.5);
+        if (states.contains(WidgetState.selected)) return Colors.lightBlue.withValues(alpha: 0.5);
         return Colors.grey;
       }),
     ),
@@ -73,7 +73,7 @@ class AppThemes {
         return Colors.white;
       }),
       trackColor: WidgetStateProperty.resolveWith<Color>((states) {
-        if (states.contains(WidgetState.selected)) return Colors.lightBlue.withOpacity(0.5);
+        if (states.contains(WidgetState.selected)) return Colors.lightBlue.withValues(alpha: 0.5);
         return Colors.grey;
       }),
     ),

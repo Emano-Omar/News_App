@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:news_app/core/routing/app_router.dart';
 
-import 'package:news_app/main.dart';
 import 'package:news_app/news_app.dart';
 
 void main() {

@@ -52,7 +52,7 @@ class NewsItem extends StatelessWidget {
                               const CustomSizedBox(height: 5, width: 0),
                               // ignore: prefer_if_null_operators
                               Text(
-                                articles?.description != null
+                                articles.description != null
                                     ? articles.description!
                                     : "---",
                                 style: Theme.of(context).textTheme.bodyMedium,

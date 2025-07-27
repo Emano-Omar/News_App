@@ -28,7 +28,7 @@ class NewsCubit extends Cubit<NewsStates> {
       filteredArticles = List.from(_allArticles);
     } else {
       filteredArticles = _allArticles.where((article) =>
-          (article?.title ?? '').toLowerCase().contains(query.toLowerCase())
+          (article.title ?? '').toLowerCase().contains(query.toLowerCase())
       ).toList();
     }
     emit(NewsFilterState(filteredArticles));
