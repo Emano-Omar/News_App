@@ -1,0 +1,38 @@
+import 'package:dio/dio.dart';
+import '../api_constants.dart';
+import '../models/news.dart';
+
+class NewsWebService {
+  late Dio dio;
+
+  NewsWebService(){
+    BaseOptions options = BaseOptions(
+        connectTimeout: Duration(seconds: 30),
+        receiveTimeout: Duration(seconds: 30),
+        receiveDataWhenStatusError: true,
+        baseUrl: baseUrl,
+    );
+
+    dio = Dio(options);
+  }
+
+  Future<News> getNews() async {
+    try {
+      Response response = await dio.get(
+          path,
+          queryParameters: {
+            'category': category,
+            'country': country,
+            'apiKey': apiKey,
+          }
+      );
+
+      print(response.data);
+
+      return News.fromJson(response.data);
+    } catch (e) {
+      print(e.toString());
+      return Future.error(e.toString());
+    }
+  }
+}
