@@ -6,7 +6,6 @@ class NewsRepository
   final NewsWebService _newsWebService;
   NewsRepository(this._newsWebService);
 
-  Future<News> getNews() async {
-    return _newsWebService.getNews();
-  }
+  Future<News?> getNews() => _newsWebService.getNews();
+
 }

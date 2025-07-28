@@ -15,9 +15,16 @@ class NewsCubit extends Cubit<NewsStates> {
     try {
       emit(NewsLoadingState());
       final news = await _newsRepository.getNews();
-      _allArticles = news.articles;
-      filteredArticles = List.from(_allArticles);
-      emit(NewsLoadedState(news));
+
+      if (news != null){
+        _allArticles = news.articles;
+        filteredArticles = List.from(_allArticles);
+        emit(NewsLoadedState(news));
+      }
+      else {
+        emit(NewsErrorState("No news data received"));
+      }
+
     } catch (e) {
       emit(NewsErrorState(e.toString()));
     }

@@ -16,7 +16,7 @@ class NewsWebService {
     dio = Dio(options);
   }
 
-  Future<News> getNews() async {
+  Future<News?> getNews() async {
     try {
       Response response = await dio.get(
           path,
@@ -27,9 +27,13 @@ class NewsWebService {
           }
       );
 
-      print(response.data);
+     if (response.statusCode == 200){
+       return News.fromJson(response.data);
+     }
+    else {
+       return null;
+     }
 
-      return News.fromJson(response.data);
     } catch (e) {
       print(e.toString());
       return Future.error(e.toString());

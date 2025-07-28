@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/core/routing/routes.dart';
+import 'package:news_app/features/ui/screens/home_screen/widgets/custom_text_widget.dart';
 import '../../../../data/models/articles.dart';
 import 'custom_sized_box.dart';
 
@@ -43,21 +44,15 @@ class NewsItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                articles.title!,
-                                style: Theme.of(context).textTheme.bodyLarge,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
+                              CustomTextWidget(
+                              text: articles.title!,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                              maxLines: 1,
                               ),
                               const CustomSizedBox(height: 5, width: 0),
-                              // ignore: prefer_if_null_operators
-                              Text(
-                                articles.description != null
-                                    ? articles.description!
-                                    : "---",
-                                style: Theme.of(context).textTheme.bodyMedium,
+                              CustomTextWidget(
+                                text: articles.description ?? '',
                                 maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
                               ),
                               TextButton(
                                   onPressed: () {
@@ -66,7 +61,8 @@ class NewsItem extends StatelessWidget {
                                         arguments: articles
                                         );
                                   },
-                                  child: Text(":: Read more >>",
+                                  child: CustomTextWidget(
+                                   text: ":: Read more >>",
                                     style: Theme.of(context).textTheme.bodySmall,
                                   )),
                             ],
@@ -75,14 +71,14 @@ class NewsItem extends StatelessWidget {
                       ],
                     ),
                       const CustomSizedBox(height: 5, width: 0),
-                      Text(
-                    articles.publishDate?.isNotEmpty == true ?
-                    DateFormat('dd/MM/yyyy – HH:mm a').
-                    format(DateTime.parse(articles.publishDate.toString()))
-                    : '---',
-                    style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ],
+                      CustomTextWidget(
+                        text: articles.publishDate?.isNotEmpty == true
+                            ? DateFormat('dd/MM/yyyy – HH:mm a')
+                            .format(DateTime.parse(articles.publishDate!))
+                            : '---',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      )
+                    ],
         ),
       ),
     );
